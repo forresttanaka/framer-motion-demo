@@ -22,7 +22,7 @@ export default function Home() {
 						</a>
 					</Link>
 
-					<Link href="/demos/facets-hide-animate">
+					<Link href="/demos/facets-mount">
 						<a className={styles.card}>
 							<h2>Animated accordion facets with hiding</h2>
 							<p>Show accordion facets that hide on click with animation</p>

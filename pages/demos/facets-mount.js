@@ -63,24 +63,20 @@ const Term = ({ term }) => {
 
 const TermList = ({ terms, isExpanded }) => {
     return (
-        <motion.div
-            className={`term-list${isExpanded ? ' term-list--expanded' : ''}`}
-            animate={{ height: isExpanded ? 'auto' : 0}}
-        >
-            {terms.map(term => {
-                return <Term key={term.field} term={term} />;
-            })}
-        </motion.div>
+        <>
+            {isExpanded && (
+                <div className="term-list term-list--expanded">
+                    {terms.map(term => {
+                        return <Term key={term.field} term={term} />;
+                    })}
+                </div>
+            )}
+        </>
     );
 };
 
 const FacetTrigger = ({ facet, isExpanded, onClick }) => (
-    <motion.button
-        type="button"
-        className="facet-trigger"
-        onClick={() => onClick(facet.field)}
-        animate={{ color: isExpanded ? '#00f' : '#606060', rotateZ: isExpanded ? 180 : 0 }}
-    >
+    <button type="button" className="facet-trigger" onClick={() => onClick(facet.field)}>
         <div className="facet-trigger__title">{facet.title}</div>
         <div className="facet-trigger__indicator">
             {isExpanded
@@ -88,7 +84,7 @@ const FacetTrigger = ({ facet, isExpanded, onClick }) => (
                 : <SvgIcon.Plus css="facet-trigger__indicator-icon" />
             }
         </div>
-    </motion.button>
+    </button>
 );
 
 const Facet = ({ facet, isExpanded, onClick }) => {
