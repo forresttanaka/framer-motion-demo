@@ -18,21 +18,23 @@ export default function Home() {
 					<Link href="/demos/facets-hide">
 						<a className={styles.card}>
 							<h2>Accordion facets with hiding</h2>
-							<p>Show accordion facets that hide on click without animation</p>
+							<p>Show accordion facets that hide on click</p>
 						</a>
 					</Link>
 
 					<Link href="/demos/facets-mount">
 						<a className={styles.card}>
-							<h2>Animated accordion facets with hiding</h2>
-							<p>Show accordion facets that hide on click with animation</p>
+							<h2>Accordion facets with mounting</h2>
+							<p>Show accordion facets that mount and dismount on click</p>
 						</a>
 					</Link>
 
-					<a href="https://nextjs.org/learn" className={styles.card}>
-						<h2>Learn &rarr;</h2>
-						<p>Learn about Next.js in an interactive course with quizzes!</p>
-					</a>
+					<Link href="/demos/logo-spin">
+						<a className={styles.card}>
+							<h2>Logo Spin</h2>
+							<p>Show spinning logo</p>
+						</a>
+					</Link>
 
 					<a
 						href="https://github.com/vercel/next.js/tree/master/examples"
