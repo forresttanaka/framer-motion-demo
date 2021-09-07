@@ -1,4 +1,5 @@
 .quotation-background {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,10 +7,26 @@
     background: radial-gradient(circle, #0170c7 0%, #004882 150%);
 }
 
+.quotation-background-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url(../libs/background.svg);
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+}
+
 .quotation-display {
-    width: 600px;
+    padding: 40px;
+    width: 800px;
     margin: 0 auto;
     color: #fff;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .author {
@@ -25,4 +42,8 @@
     border: 2px solid #fff;
     font-size: 1.5rem;
     font-weight: 100;
+}
+
+.blur-control {
+    display: block;
 }

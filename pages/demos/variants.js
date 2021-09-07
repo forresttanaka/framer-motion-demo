@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const germanQuotation = `
     Eine neue wissenschaftliche Wahrheit pflegt sich nicht in der Weise durchzusetzen, daß ihre
@@ -24,14 +25,23 @@ const englishTitle = 'Scientific Autobiography'
 
 export const PlanckQuoteViewer = () => {
     const [language, setLanguage] = React.useState('de')
+    const [blur, setBlur] = React.useState(20)
 
-    const handleChangeLanguage = (event) => {
+    const handleChangeLanguage = () => {
         setLanguage(language === 'de' ? 'en' : 'de')
+    }
+
+    const onChangeBlur = (e) => {
+        setBlur(e.target.value)
     }
 
     return (
         <div className="quotation-background">
-            <div className="quotation-display">
+            <div className="quotation-background-decoration" />
+            <motion.div
+                className="quotation-display"
+                animate={{ backdropFilter: `blur(${blur}px)` }}
+            >
                 <button className="change-language" onClick={handleChangeLanguage}>
                     {language === 'de' ? 'English' : 'Deutsch'}
                 </button>
@@ -47,7 +57,8 @@ export const PlanckQuoteViewer = () => {
                     </>
                 )}
                 <p className="author">&mdash; Max Planck</p>
-            </div>
+                <input className="blur-control" type="range" id="blur" name="blur" value={blur} onChange={onChangeBlur} min="0" max="20" />
+            </motion.div>
         </div>
     )
 }
