@@ -1,6 +1,6 @@
 import React from 'react';
 import * as SvgIcon from '../../libs/svg-icons';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 const termsAssayType = [
@@ -63,15 +63,20 @@ const Term = ({ term }) => {
 
 const TermList = ({ terms, isExpanded }) => {
     return (
-        <>
+        <AnimatePresence>
             {isExpanded && (
-                <div className="term-list term-list--expanded">
+                <motion.div
+                    className="term-list term-list--expanded"
+                    initial={{ height: 0 }}
+                    animate={{ height: 'auto' }}
+                    exit={{ height: 0 }}
+                >
                     {terms.map(term => {
                         return <Term key={term.field} term={term} />;
                     })}
-                </div>
+                </motion.div>
             )}
-        </>
+        </AnimatePresence>
     );
 };
 

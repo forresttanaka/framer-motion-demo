@@ -1,66 +1,97 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from 'react'
+import _ from 'underscore'
+import { AnimatePresence, motion, useAnimation } from 'framer-motion'
 
-const germanQuotation = `
-    Eine neue wissenschaftliche Wahrheit pflegt sich nicht in der Weise durchzusetzen, daß ihre
-    Gegner überzeugt werden und sich als belehrt erklären, sondern vielmehr dadurch, daß ihre
-    Gegner allmählich aussterben und daß die heranwachsende Generation von vornherein mit der
-    Wahrheit vertraut gemacht ist. … Eine neue große wissenschaftliche Idee pflegt sich nicht in
-    der Weise durchzusetzen, daß ihre Gegner allmählich überzeugt und bekehrt werden — daß aus
-    einem Saulus ein Paulus wird, ist eine große Seltenheit —, sondern vielmehr in der Weise, dass
-    die Gegner allmählich aussterben und daß die heranwachsende Generation von vornherein mit der
-    Idee vertraut gemacht wird. Auch hier heißt es wieder: Wer die Jugend hat, der hat die Zukunft.`
+const list = [
+    {
+        name: 'DNA Binding',
+        count: 7769,
+    },
+    {
+        name: 'Transcription',
+        count: 2648,
+    },
+    {
+        name: 'DNA accessibility',
+        count: 1589,
+    },
+    {
+        name: 'DNA methylation',
+        count: 556,
+    },
+    {
+        name: 'RNA binding',
+        count: 359,
+    },
+    {
+        name: '3D chromatin structure',
+        count: 176,
+    },
+    {
+        name: 'Replication timing',
+        count: 163,
+    },
+    {
+        name: 'Genotyping',
+        count: 127,
+    },
+    {
+        name: 'DNA sequencing',
+        count: 29,
+    },
+    {
+        name: 'Single cell',
+        count: 25,
+    },
+    {
+        name: 'Proteomics',
+        count: 14,
+    },
+]
 
-const englishQuotation = `
-    A new scientific truth does not generally triumph by persuading its opponents and getting them
-    to admit their errors, but rather by its opponents gradually dying out and giving way to a new
-    generation that is raised on it. … An important scientific innovation rarely makes its way by
-    gradually winning over and converting its opponents: it rarely happens that Saul becomes Paul.
-    What does happen is that its opponents gradually die out, and that the growing generation is
-    familiarized with the ideas from the beginning: another instance of the fact that the future
-    lies with the youth.`
-
-const germanTitle = 'Wissenschaftliche Selbstbiographie'
-const englishTitle = 'Scientific Autobiography'
-
-export const PlanckQuoteViewer = () => {
-    const [language, setLanguage] = React.useState('de')
+export const ListSorter = () => {
+    const [sortingKey, setSortingKey] = React.useState('name')
     const [blur, setBlur] = React.useState(20)
 
-    const handleChangeLanguage = () => {
-        setLanguage(language === 'de' ? 'en' : 'de')
+    const handleChangeSorting = () => {
+        setSortingKey(sortingKey === 'name' ? 'count' : 'name')
     }
 
     const onChangeBlur = (e) => {
         setBlur(e.target.value)
     }
 
+    console.log(list)
     return (
-        <div className="quotation-background">
-            <div className="quotation-background-decoration" />
+        <div className="list-background">
+            <div className="list-background-decoration" />
             <motion.div
-                className="quotation-display"
+                className="list-display"
                 animate={{ backdropFilter: `blur(${blur}px)` }}
             >
-                <button className="change-language" onClick={handleChangeLanguage}>
-                    {language === 'de' ? 'English' : 'Deutsch'}
-                </button>
-                {language === 'de' ? (
-                    <>
-                        <h1>{germanTitle}</h1>
-                        <p>{germanQuotation}</p>
-                    </>
-                ) : (
-                    <>
-                        <h1>{englishTitle}</h1>
-                        <p>{englishQuotation}</p>
-                    </>
-                )}
-                <p className="author">&mdash; Max Planck</p>
+                <motion.button
+                    className="change-sorting"
+                    onClick={handleChangeSorting}
+                    whileHover={{ scale: 1.2, boxShadow: '0px 0px 10px rgba(255, 255, 255, 1.0)' }}
+                >
+                    {sortingKey === 'name' ? 'Sort by Count' : 'Sort by Name'}
+                </motion.button>
+
+                <div className="list-display__content">
+                    {_(list).sortBy(sortingKey).map(item => {
+                        return (
+                            <div className="list-item" key={item.name}>
+                                <div className="list-item__name">{item.name}</div>
+                                <div className="list-item__count">{item.count}</div>
+                            </div>
+                        )
+                    })}
+                </div>
+
                 <input className="blur-control" type="range" id="blur" name="blur" value={blur} onChange={onChangeBlur} min="0" max="20" />
             </motion.div>
-        </div>
+        </div >
     )
 }
 
-export default PlanckQuoteViewer
+export default ListSorter
