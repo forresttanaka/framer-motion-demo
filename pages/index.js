@@ -43,15 +43,12 @@ export default function Home() {
 						</a>
 					</Link>
 
-					<a
-						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-						className={styles.card}
-					>
-						<h2>Deploy &rarr;</h2>
-						<p>
-							Instantly deploy your Next.js site to a public URL with Vercel.
-						</p>
-					</a>
+					<Link href="/demos/svg-path">
+						<a className={styles.card}>
+							<h2>SVG Path</h2>
+							<p>Animate an SVG path</p>
+						</a>
+					</Link>
 				</div>
 			</main>
 
