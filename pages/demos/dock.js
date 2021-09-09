@@ -3,44 +3,44 @@ import React from 'react'
 
 const dockItems = [
     {
-        content: "0",
-        color: "green",
+        content: '0',
+        color: 'green',
     },
     {
-        content: "1",
-        color: "red",
+        content: '1',
+        color: 'red',
     },
     {
-        content: "2",
-        color: "orange",
+        content: '2',
+        color: 'orange',
     },
     {
-        content: "3",
-        color: "black",
+        content: '3',
+        color: 'goldenrod',
     },
     {
-        content: "4",
-        color: "darkseagreen",
+        content: '4',
+        color: 'darkseagreen',
     },
     {
-        content: "5",
-        color: "purple",
+        content: '5',
+        color: 'purple',
     },
     {
-        content: "6",
-        color: "chocolate",
+        content: '6',
+        color: 'chocolate',
     },
     {
-        content: "7",
-        color: "cornflowerblue",
+        content: '7',
+        color: 'cornflowerblue',
     },
     {
-        content: "8",
-        color: "forestgreen",
+        content: '8',
+        color: 'forestgreen',
     },
     {
-        content: "9",
-        color: "deeppink",
+        content: '9',
+        color: 'deeppink',
     },
 ]
 
