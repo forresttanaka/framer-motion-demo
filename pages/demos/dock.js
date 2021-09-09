@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { motion } from 'framer-motion'
 
 const dockItems = [
     {
@@ -47,46 +47,56 @@ const dockItems = [
 const ITEM_WIDTH = 100
 const ITEM_HEIGHT = 150
 
-const DockItem = ({ item, itemClick, scale }) => {
-    return (
-        <button
-            type="button"
-            className="dock-item"
-            style={{
-                backgroundColor: item.color,
-                width: ITEM_WIDTH * scale,
-                height: ITEM_HEIGHT * scale,
-            }}
-            onClick={() => itemClick(item.content)}
-        >
-            {item.content}
-        </button>
-    )
-}
+const spring = {
+    type: 'tween',
+    damping: 10,
+    stiffness: 100,
+    duration: 0.3,
+};
 
-const generateInitialScales = (items) => {
-    const scales = {}
-    items.forEach(item => {
-        scales[item.content] = 1
-    })
-    return scales
-}
+const generateInitialScales = (items) => (
+    Array(items.length).fill(1)
+)
 
 const Dock = () => {
-    const [scales, setScales] = React.useState(generateInitialScales(dockItems))
+    const [scales, setScales] = React.useState(() => generateInitialScales(dockItems))
 
-    const itemClick = (itemContent) => {
+    const itemClick = (itemIndex) => {
         const newScales = generateInitialScales(dockItems)
-        newScales[itemContent] = 1.5
+        if (itemIndex > 0) {
+            newScales[itemIndex - 1] = 1.3
+        }
+        newScales[itemIndex] = 1.8
+        if (itemIndex < dockItems.length - 1) {
+            newScales[itemIndex + 1] = 1.3
+        }
         setScales(newScales)
     }
 
     return (
         <div className="dock-background">
             <div className="dock-container">
-                {dockItems.map(item => (
-                    <DockItem key={item.content} item={item} itemClick={itemClick} scale={scales[item.content]} />
-                ))}
+                {dockItems.map((item, i) => {
+                    const scale = scales[i]
+                    return (
+                        <motion.button
+                            key={item.content}
+                            transition={spring}
+                            type="button"
+                            className="dock-item"
+                            animate={{
+                                width: ITEM_WIDTH * scale,
+                                height: ITEM_HEIGHT * scale,
+                            }}
+                            style={{
+                                backgroundColor: item.color,
+                            }}
+                            onClick={() => itemClick(i)}
+                        >
+                            {item.content}
+                        </motion.button>
+                    )
+                })}
             </div>
         </div>
     )
