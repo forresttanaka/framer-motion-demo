@@ -36,10 +36,10 @@ export default function Home() {
 						</a>
 					</Link>
 
-					<Link href="/demos/variants">
+					<Link href="/demos/layout">
 						<a className={styles.card}>
-							<h2>Animation variants</h2>
-							<p>Show an example of duplicating animations through variants.</p>
+							<h2>Motion layout</h2>
+							<p>Show how to animate using framer motion layout</p>
 						</a>
 					</Link>
 

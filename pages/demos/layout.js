@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'underscore'
-import { AnimatePresence, motion, useAnimation } from 'framer-motion'
+import { AnimatePresence, motion, useAnimation, useSpring } from 'framer-motion'
 
 const list = [
     {
@@ -49,6 +49,13 @@ const list = [
     },
 ]
 
+const spring = {
+    type: 'spring',
+    damping: 20,
+    stiffness: 520,
+    duration: 5,
+};
+
 export const ListSorter = () => {
     const [sortingKey, setSortingKey] = React.useState('name')
     const [blur, setBlur] = React.useState(20)
@@ -61,7 +68,6 @@ export const ListSorter = () => {
         setBlur(e.target.value)
     }
 
-    console.log(list)
     return (
         <div className="list-background">
             <div className="list-background-decoration" />
@@ -80,10 +86,15 @@ export const ListSorter = () => {
                 <div className="list-display__content">
                     {_(list).sortBy(sortingKey).map(item => {
                         return (
-                            <div className="list-item" key={item.name}>
+                            <motion.div
+                                key={item.name}
+                                layout
+                                transition={spring}
+                                className="list-item"
+                            >
                                 <div className="list-item__name">{item.name}</div>
                                 <div className="list-item__count">{item.count}</div>
-                            </div>
+                            </motion.div>
                         )
                     })}
                 </div>
