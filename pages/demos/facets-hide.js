@@ -1,6 +1,5 @@
 import React from 'react';
 import * as SvgIcon from '../../libs/svg-icons';
-import { motion } from 'framer-motion';
 
 
 const termsAssayType = [
