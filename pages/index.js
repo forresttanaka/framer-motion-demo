@@ -49,6 +49,13 @@ export default function Home() {
 							<p>Animate an SVG path</p>
 						</a>
 					</Link>
+
+					<Link href="/demos/dock">
+						<a className={styles.card}>
+							<h2>Dock</h2>
+							<p>Animation inspired by macOS dock</p>
+						</a>
+					</Link>
 				</div>
 			</main>
 

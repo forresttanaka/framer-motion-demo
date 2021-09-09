@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/dock.css'
 import '../styles/facets.css'
 import '../styles/layout.css'
 import '../styles/logo.css'

@@ -1,0 +1,26 @@
+.dock-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: radial-gradient(circle, #737c7e 0%, #62696b 150%);
+}
+
+.dock-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.dock-item {
+    display: flex;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 150px;
+    font-size: 4rem;
+    font-weight: 100;
+}
