@@ -47,22 +47,22 @@ const LogoSpin = () => {
     }, [])
 
     return (
-        <div className="logo" onWheel={onWheel}>
-            <motion.div
-                className="logo-spinner"
-                animate={{
-                    rotate: rotationDegrees,
-                    scale: scale,
-                }}
-                transition={{
-                    stiffness: 520,
-                    damping: 5,
-                    type: 'spring',
-                }}
-            >
-                <Image src={logo} alt="Stanford logo" width="500" height="500" />
-            </motion.div>
-            <AnimationChooser selection={animationSelection} onChange={(e) => setAnimationSelection(e.target.value)} />
+        <div className="logo-background">
+            <div className="logo" onWheel={onWheel}>
+                <motion.div
+                    className="logo-spinner"
+                    animate={{
+                        rotate: rotationDegrees,
+                        scale: scale,
+                    }}
+                    transition={{
+                        type: 'linear',
+                    }}
+                >
+                    <Image src={logo} alt="Stanford logo" width="300" height="300" />
+                </motion.div>
+                <AnimationChooser selection={animationSelection} onChange={(e) => setAnimationSelection(e.target.value)} />
+            </div>
         </div>
     )
 }
