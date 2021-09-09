@@ -50,7 +50,7 @@ const demoFacets = [
         title: 'Assay Title',
         terms: termsAssayTitle,
     }
-];
+]
 
 const Term = ({ term }) => {
     return (
@@ -58,28 +58,26 @@ const Term = ({ term }) => {
             <div className="term__title">{term.title}</div>
             <div className="term__count">{term.count}</div>
         </div>
-    );
-};
+    )
+}
 
 const TermList = ({ terms, isExpanded }) => {
     return (
-        <motion.div
+        <div
             className={`term-list${isExpanded ? ' term-list--expanded' : ''}`}
-            animate={{ height: isExpanded ? 'auto' : 0}}
         >
             {terms.map(term => {
                 return <Term key={term.field} term={term} />;
             })}
-        </motion.div>
-    );
-};
+        </div>
+    )
+}
 
 const FacetTrigger = ({ facet, isExpanded, onClick }) => (
-    <motion.button
+    <button
         type="button"
         className="facet-trigger"
         onClick={() => onClick(facet.field)}
-        animate={{ color: isExpanded ? '#00f' : '#606060', rotateZ: isExpanded ? 180 : 0 }}
     >
         <div className="facet-trigger__title">{facet.title}</div>
         <div className="facet-trigger__indicator">
@@ -88,8 +86,8 @@ const FacetTrigger = ({ facet, isExpanded, onClick }) => (
                 : <SvgIcon.Plus css="facet-trigger__indicator-icon" />
             }
         </div>
-    </motion.button>
-);
+    </button>
+)
 
 const Facet = ({ facet, isExpanded, onClick }) => {
     return (
@@ -98,25 +96,25 @@ const Facet = ({ facet, isExpanded, onClick }) => {
             <TermList terms={facet.terms} isExpanded={isExpanded} />
         </div>
     );
-};
+}
 
 const initExpandedFacets = (facets) => {
     return facets.reduce((accExpandedFacets, facet) => {
-        accExpandedFacets[facet.field] = false;
-        return accExpandedFacets;
-    }, {});
-};
+        accExpandedFacets[facet.field] = false
+        return accExpandedFacets
+    }, {})
+}
 
 const FacetList = () => {
     const facetsToRender = demoFacets;
-    const [expandedFacets, setExpandedFacets] = React.useState(() => initExpandedFacets(facetsToRender));
+    const [expandedFacets, setExpandedFacets] = React.useState(() => initExpandedFacets(facetsToRender))
 
     const facetTriggerHandler = (facetField) => {
         setExpandedFacets({
             ...expandedFacets,
             [facetField]: !expandedFacets[facetField],
-        });
-    };
+        })
+    }
 
     return (
         <div className="facet-list">
@@ -125,6 +123,6 @@ const FacetList = () => {
             })}
         </div>
     )
-};
+}
 
 export default FacetList;
