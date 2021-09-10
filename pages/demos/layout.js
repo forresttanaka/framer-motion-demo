@@ -52,8 +52,7 @@ const list = [
 const spring = {
     type: 'spring',
     damping: 20,
-    stiffness: 520,
-    duration: 5,
+    stiffness: 100,
 };
 
 export const ListSorter = () => {
@@ -88,7 +87,6 @@ export const ListSorter = () => {
                         return (
                             <motion.div
                                 key={item.name}
-                                layout
                                 transition={spring}
                                 className="list-item"
                             >
@@ -99,7 +97,9 @@ export const ListSorter = () => {
                     })}
                 </div>
 
-                <input className="blur-control" type="range" id="blur" name="blur" value={blur} onChange={onChangeBlur} min="0" max="20" />
+                <div className="blur-control">
+                    <input className="blur-control" type="range" id="blur" name="blur" value={blur} onChange={onChangeBlur} min="0" max="20" />
+                </div>
             </motion.div>
         </div >
     )
