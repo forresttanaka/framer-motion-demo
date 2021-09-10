@@ -16,6 +16,8 @@
 
 .dock-item {
     display: flex;
+    cursor: pointer;
+    position: relative;
     border: none;
     align-items: center;
     justify-content: center;

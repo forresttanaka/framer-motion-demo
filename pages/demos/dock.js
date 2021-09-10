@@ -1,45 +1,56 @@
 import React from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const dockItems = [
     {
-        content: '0',
+        id: 'base-pairs',
+        content: 'base-pairs',
         color: 'green',
     },
     {
-        content: '1',
+        id: 'histones',
+        content: 'histones',
         color: 'red',
     },
     {
-        content: '2',
+        id: 'dna',
+        content: 'dna',
         color: 'orange',
     },
     {
-        content: '3',
+        id: 'gel',
+        content: 'gel',
         color: 'goldenrod',
     },
     {
-        content: '4',
+        id: 'chromosome',
+        content: 'chromosome',
         color: 'darkseagreen',
     },
     {
-        content: '5',
+        id: 'cell',
+        content: 'cell',
         color: 'purple',
     },
     {
-        content: '6',
+        id: 'virus',
+        content: 'virus',
         color: 'chocolate',
     },
     {
-        content: '7',
+        id: 'mitochondrion',
+        content: 'mitochondria',
         color: 'cornflowerblue',
     },
     {
-        content: '8',
+        id: 'golgi',
+        content: 'golgi',
         color: 'forestgreen',
     },
     {
-        content: '9',
+        id: 'browser',
+        content: 'browser',
         color: 'deeppink',
     },
 ]
@@ -48,10 +59,9 @@ const ITEM_WIDTH = 100
 const ITEM_HEIGHT = 150
 
 const spring = {
-    type: 'tween',
-    damping: 10,
+    type: 'spring',
+    damping: 20,
     stiffness: 100,
-    duration: 0.3,
 };
 
 const generateInitialScales = (items) => (
@@ -62,6 +72,7 @@ const Dock = () => {
     const [scales, setScales] = React.useState(() => generateInitialScales(dockItems))
 
     const itemClick = (itemIndex) => {
+        console.log(itemIndex)
         const newScales = generateInitialScales(dockItems)
         if (itemIndex > 0) {
             newScales[itemIndex - 1] = 1.3
@@ -80,7 +91,7 @@ const Dock = () => {
                     const scale = scales[i]
                     return (
                         <motion.button
-                            key={item.content}
+                            key={item.id}
                             transition={spring}
                             type="button"
                             className="dock-item"
@@ -93,7 +104,7 @@ const Dock = () => {
                             }}
                             onClick={() => itemClick(i)}
                         >
-                            {item.content}
+                            <Image src={`/trays/${item.content}.svg`} layout="fill" alt="" />
                         </motion.button>
                     )
                 })}
