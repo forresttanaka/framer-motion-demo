@@ -43,7 +43,7 @@
     overflow: hidden;
 }
 
-.term-list--expanded {
+.term-list.term-list--expanded {
     display: block;
 }
 
