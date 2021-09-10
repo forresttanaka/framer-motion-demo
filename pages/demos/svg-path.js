@@ -41,9 +41,10 @@ const TrackPage = () => {
     const [pathProgress, setPathProgress] = React.useState(0);
 
     const onChangePathProgress = (e) => {
-        setPathProgress((e.target.value - 1) / 100)
+        setPathProgress(e.target.value)
     }
 
+    console.log(pathProgress);
     return (
         <div className="track-background">
             <div className="track-container">
@@ -51,7 +52,7 @@ const TrackPage = () => {
                     <div className="track-content__ghost">
                         <Track pathProgress={1} css="laguna-seca-path--ghost" />
                     </div>
-                    <Track pathProgress={pathProgress} />
+                    <Track pathProgress={pathProgress / 100} />
                 </div>
                 <input className="path-control" type="range" id="path" name="path" value={pathProgress} onChange={onChangePathProgress} min="0" max="100" />
             </div>
